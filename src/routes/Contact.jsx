@@ -13,6 +13,10 @@ export default function Contact() {
   const [error, setError] = useState(initError);
   const [focus, setFocus] = useState('');
 
+  if (document) {
+    document.title = 'Contact Me | kael';
+  }
+
   const submit = (e) => {
     e.preventDefault();
 
