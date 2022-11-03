@@ -1,6 +1,7 @@
 import { Grid, styled, Typography } from '@mui/material';
 import { Container as MuiContainer } from '@mui/system';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import CheckBox from '../components/CheckBox';
 import Layout from '../components/Layout';
@@ -9,6 +10,8 @@ import TextField from '../components/TextField';
 import validateEmail from '../utils/helpers/validateEmail';
 
 export default function Contact() {
+  const location = useLocation();
+  const pathname = location.pathname;
   const [data, setData] = useState(initData);
   const [error, setError] = useState(initError);
   const [focus, setFocus] = useState('');
@@ -16,6 +19,10 @@ export default function Contact() {
   if (document) {
     document.title = 'Contact Me | kael';
   }
+
+  useEffect(() => {
+    scrollTo(0, 0);
+  }, [pathname]);
 
   const submit = (e) => {
     e.preventDefault();

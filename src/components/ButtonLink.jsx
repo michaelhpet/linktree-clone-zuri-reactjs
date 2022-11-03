@@ -5,7 +5,7 @@ export default function ButtonLink(props) {
   return (
     <Tooltip arrow title={props.title}>
       {!props?.href?.startsWith('http') ? (
-        <ReactLink id={props.id} to={props.href}>
+        <ReactLink id={props.id} to={props.href} preventScrollReset={false}>
           {props.label}
         </ReactLink>
       ) : (
