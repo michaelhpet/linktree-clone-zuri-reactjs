@@ -6,8 +6,10 @@ export default function ButtonLink(props) {
       <StyledLink
         href={props.href}
         id={props.id}
-        target='_blank'
-        rel='noreferrer'>
+        {...(props?.href.startsWith('https://') && {
+          target: '_blank',
+          rel: 'noreferrer',
+        })}>
         {props.label}
       </StyledLink>
     </Tooltip>

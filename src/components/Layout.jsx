@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 export default function Layout(props) {
   return (
     <Container>
-      <NavBar />
+      {!props?.noNav ? <NavBar /> : null}
       {props.children}
       <Footer />
     </Container>

@@ -34,6 +34,11 @@ const buttonLinks = [
     title:
       'Discover tips & guidelines you need to create truly professional designs',
   },
+  {
+    id: 'contact',
+    href: '/contact',
+    label: 'Contact Me',
+  },
 ];
 
 export default buttonLinks;
