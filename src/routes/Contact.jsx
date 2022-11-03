@@ -16,8 +16,10 @@ export default function Contact() {
     agree: false,
   });
 
-  const handleChange = (e) => {
-    console.log(e.target.id);
+  const submit = (e) => {
+    e.preventDefault();
+
+    console.log(data);
   };
 
   return (
@@ -28,16 +30,18 @@ export default function Contact() {
           Hi there, contact me to ask me about anything you have in mind.
         </SubHeader>
 
-        <Form>
+        <Form onSubmit={submit}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <InputStack>
-                <Label htmlFor='firstName'>First Name</Label>
+                <Label htmlFor='first_name'>First Name</Label>
                 <TextField
-                  id='firstName'
+                  id='first_name'
                   placeholder='Enter your first name'
                   value={data.firstName}
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    setData((data) => ({ ...data, firstName: e.target.value }))
+                  }
                   fullWidth
                   error
                   message='Error somewhere'
@@ -47,10 +51,14 @@ export default function Contact() {
 
             <Grid item xs={12} sm={6}>
               <InputStack>
-                <Label htmlFor='lastName'>Last Name</Label>
+                <Label htmlFor='last_name'>Last Name</Label>
                 <TextField
-                  id='lastName'
+                  id='last_name'
                   placeholder='Enter your last name'
+                  value={data.lastName}
+                  onChange={(e) =>
+                    setData((data) => ({ ...data, lastName: e.target.value }))
+                  }
                   fullWidth
                   error
                   message='Error somewhere'
@@ -64,6 +72,10 @@ export default function Contact() {
                 <TextField
                   id='email'
                   placeholder='yourname@email.com'
+                  value={data.email}
+                  onChange={(e) =>
+                    setData((data) => ({ ...data, email: e.target.value }))
+                  }
                   fullWidth
                   error
                   message='Error somewhere'
@@ -78,6 +90,10 @@ export default function Contact() {
                   id='message'
                   minRows={5}
                   placeholder="Send me a message and I'll reply you as soon as possible..."
+                  value={data.message}
+                  onChange={(e) =>
+                    setData((data) => ({ ...data, message: e.target.value }))
+                  }
                   fullWidth
                 />
               </InputStack>
@@ -99,7 +115,9 @@ export default function Contact() {
             </Grid>
 
             <Grid item xs={12}>
-              <Button fullWidth>Send message</Button>
+              <Button id='btn__submit' fullWidth>
+                Send message
+              </Button>
             </Grid>
           </Grid>
         </Form>
@@ -113,6 +131,10 @@ const Container = styled(MuiContainer)(({ theme }) => ({
 
   [theme.breakpoints.up('sm')]: {
     maxWidth: 720,
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    padding: '64px 0',
   },
 }));
 

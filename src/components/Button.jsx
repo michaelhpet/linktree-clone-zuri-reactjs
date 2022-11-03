@@ -32,6 +32,12 @@ const Root = styled('button', {
       '0 0 0 4px rgba(209, 233, 255, 1), 0 1px 2px rgba(16, 24, 40, 0.05)',
   },
 
+  '&:disabled': {
+    background: 'rgba(178, 221, 255, 1)',
+    border: '1px solid rgba(178, 221, 255, 1)',
+    boxShadow: '0 1px 2px rgba(16, 24, 40, 0.05)',
+  },
+
   ...(props?.fullWidth && {
     width: '100%',
   }),

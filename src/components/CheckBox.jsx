@@ -3,7 +3,7 @@ import CheckIcon from '../icons/CheckIcon';
 
 export default function CheckBox(props) {
   return (
-    <Root onClick={props?.onChange}>
+    <Root {...(!props?.disabled && { onClick: props?.onChange })}>
       <DummyInput type='checkbox' {...props} />
       <StyledInput />
       <Check>
@@ -17,11 +17,16 @@ const Root = styled('div')({
   position: 'relative',
   width: 20,
   height: 20,
-  cursor: 'pointer',
 
   '&:hover input ~ div': {
+    cursor: 'pointer',
     border: '1px solid rgba(132, 202, 255, 1)',
     boxShadow: '0 0 0 4px rgba(209, 233, 255, 1)',
+  },
+
+  '&:hover input:disabled ~ div': {
+    cursor: 'default',
+    boxShadow: 'none',
   },
 
   'input:checked ~ div': {
@@ -30,6 +35,15 @@ const Root = styled('div')({
 
   'input:checked ~ span': {
     display: 'flex',
+  },
+
+  'input:disabled ~ div': {
+    background: 'rgba(242, 244, 247, 1)',
+    border: '1px solid rgba(208, 213, 221, 1)',
+  },
+
+  'input:disabled ~ span': {
+    display: 'none',
   },
 });
 
