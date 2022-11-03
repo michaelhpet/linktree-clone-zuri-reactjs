@@ -4,10 +4,10 @@ export default function TextField(props) {
   return <Input {...props} />;
 }
 
-// const propKeys = ['error', 'helperText', 'fullWidth'];
+const propKeys = ['error', 'fullWidth'];
 
 const Input = styled('input', {
-  // shouldForwardProp: (prop) => !propKeys.includes(prop),
+  shouldForwardProp: (prop) => !propKeys.includes(prop),
 })((props) => ({
   position: 'relative',
   fontFamily: 'inherit',
@@ -15,12 +15,20 @@ const Input = styled('input', {
   fontWeight: 400,
   borderRadius: 8,
   padding: '10px 14px',
-  border: '1px solid rgba(208, 213, 221, 1)',
-  boxShadow: '0 1px 2px rgba(16, 24, 40, 0.05)',
+  border: `1px solid rgba(${
+    props?.error ? '248, 150, 135, 1' : '208, 213, 221, 1'
+  })`,
+  boxShadow: `0 1px 2px rgba(${
+    props?.error ? '248, 150, 135, 1' : '16, 24, 40, 0.05'
+  })`,
 
   '&:focus': {
-    outline: '1px solid rgba(132, 202, 255, 1)',
-    boxShadow: '0 1px 2px rgba(132, 202, 255, 1)',
+    outline: `1px solid rgba(${
+      props?.error ? '248, 150, 135, 1' : '132, 202, 255, 1'
+    })`,
+    boxShadow: `0 1px 2px rgba(${
+      props?.error ? '248, 150, 135, 1' : '132, 202, 255, 1'
+    })`,
   },
 
   '&::placeholder': {
@@ -31,18 +39,4 @@ const Input = styled('input', {
     display: 'block',
     width: '100%',
   }),
-
-  ...(props?.error &&
-    props?.message && {
-      '&:after': {
-        display: 'block',
-        content: `"${props.message}"`,
-        marginTop: 6,
-        fontSize: 43,
-        fontWeight: 500,
-        lineHeight: '20px',
-
-        color: 'rgba(248, 63, 35, 1)',
-      },
-    }),
 }));

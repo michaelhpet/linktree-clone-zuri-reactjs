@@ -23,6 +23,7 @@ const Root = styled('button', {
   transition: 'background 0.2s',
 
   '&:hover': {
+    cursor: 'pointer',
     background: 'rgba(23, 92, 211, 1)',
   },
 
@@ -33,6 +34,7 @@ const Root = styled('button', {
   },
 
   '&:disabled': {
+    cursor: 'default',
     background: 'rgba(178, 221, 255, 1)',
     border: '1px solid rgba(178, 221, 255, 1)',
     boxShadow: '0 1px 2px rgba(16, 24, 40, 0.05)',

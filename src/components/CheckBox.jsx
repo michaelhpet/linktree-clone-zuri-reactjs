@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { Stack, styled } from '@mui/material';
 import CheckIcon from '../icons/CheckIcon';
 
 export default function CheckBox(props) {

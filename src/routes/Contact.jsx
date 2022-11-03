@@ -6,20 +6,41 @@ import CheckBox from '../components/CheckBox';
 import Layout from '../components/Layout';
 import TextArea from '../components/TextArea';
 import TextField from '../components/TextField';
+import validateEmail from '../utils/helpers/validateEmail';
 
 export default function Contact() {
-  const [data, setData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    message: '',
-    agree: false,
-  });
+  const [data, setData] = useState(initData);
+  const [error, setError] = useState(initError);
+  const [focus, setFocus] = useState('');
 
   const submit = (e) => {
     e.preventDefault();
 
-    console.log(data);
+    setFocus('');
+
+    for (const key in data) {
+      if (!data[key]) {
+        setError((error) => ({ ...error, [key]: true }));
+      } else {
+        setError((error) => ({ ...error, [key]: false }));
+      }
+    }
+
+    if (Object.values(error).some((_) => _ === true)) return;
+
+    if (!validateEmail(data.email)) {
+      return;
+    }
+
+    const name = `${data.firstName} ${data.lastName}`;
+    const myEmail = 'michaelpeter.ai@gmail.com';
+
+    open(
+      `mailto:${myEmail}?subject=${encodeURI(name)}&body=${encodeURI(
+        data.message
+      )}`,
+      '_blank'
+    );
   };
 
   return (
@@ -35,67 +56,96 @@ export default function Contact() {
             <Grid item xs={12} sm={6}>
               <InputStack>
                 <Label htmlFor='first_name'>First Name</Label>
+
                 <TextField
                   id='first_name'
                   placeholder='Enter your first name'
                   value={data.firstName}
+                  onFocus={(e) => setFocus(e.target.id)}
                   onChange={(e) =>
                     setData((data) => ({ ...data, firstName: e.target.value }))
                   }
                   fullWidth
-                  error
+                  error={error.firstName && !data.firstName}
                   message='Error somewhere'
                 />
+
+                {error?.firstName && !data.firstName && (
+                  <HelperText>Please enter your first name</HelperText>
+                )}
               </InputStack>
             </Grid>
 
             <Grid item xs={12} sm={6}>
               <InputStack>
                 <Label htmlFor='last_name'>Last Name</Label>
+
                 <TextField
                   id='last_name'
                   placeholder='Enter your last name'
                   value={data.lastName}
+                  onFocus={(e) => setFocus(e.target.id)}
                   onChange={(e) =>
                     setData((data) => ({ ...data, lastName: e.target.value }))
                   }
                   fullWidth
-                  error
-                  message='Error somewhere'
+                  error={error.lastName && !data.lastName}
                 />
+
+                {error?.lastName && !data.lastName && (
+                  <HelperText>Please enter your last name</HelperText>
+                )}
               </InputStack>
             </Grid>
 
             <Grid item xs={12}>
               <InputStack>
                 <Label htmlFor='email'>Email</Label>
+
                 <TextField
                   id='email'
                   placeholder='yourname@email.com'
                   value={data.email}
+                  onFocus={(e) => setFocus(e.target.id)}
                   onChange={(e) =>
                     setData((data) => ({ ...data, email: e.target.value }))
                   }
                   fullWidth
-                  error
-                  message='Error somewhere'
+                  error={error.email && !data.email}
                 />
+
+                {error?.email && !data?.email && (
+                  <HelperText>Please enter your email address</HelperText>
+                )}
+
+                {data?.email &&
+                  focus !== 'email' &&
+                  !validateEmail(data.email) && (
+                    <HelperText>Email address invalid</HelperText>
+                  )}
               </InputStack>
             </Grid>
 
             <Grid item xs={12}>
               <InputStack>
                 <Label htmlFor='message'>Message</Label>
+
                 <TextArea
                   id='message'
-                  minRows={5}
+                  rows={5}
                   placeholder="Send me a message and I'll reply you as soon as possible..."
                   value={data.message}
+                  onFocus={(e) => setFocus(e.target.id)}
                   onChange={(e) =>
                     setData((data) => ({ ...data, message: e.target.value }))
                   }
                   fullWidth
+                  error={error.message && !data.message}
                 />
+
+                {error?.message && !data.message && (
+                  <HelperText>Please enter a message</HelperText>
+                )}
               </InputStack>
             </Grid>
 
@@ -107,6 +157,7 @@ export default function Contact() {
                     setData((data) => ({ ...data, agree: !data.agree }))
                   }
                 />
+
                 <Text>
                   You agree to providing your data to Michael Peter who may
                   contact you.
@@ -115,7 +166,7 @@ export default function Contact() {
             </Grid>
 
             <Grid item xs={12}>
-              <Button id='btn__submit' fullWidth>
+              <Button disabled={!data.agree} id='btn__submit' fullWidth>
                 Send message
               </Button>
             </Grid>
@@ -125,6 +176,24 @@ export default function Contact() {
     </Layout>
   );
 }
+
+// init_data
+const initData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  message: '',
+  agree: true,
+};
+
+// init_error
+const initError = {
+  firstName: false,
+  lastName: false,
+  email: false,
+  emailInvalid: false,
+  message: false,
+};
 
 const Container = styled(MuiContainer)(({ theme }) => ({
   padding: '156px 0',
@@ -163,11 +232,14 @@ const InputStack = styled('div')({
   gap: 6,
 });
 
-const CheckStack = styled('div')({
+const CheckStack = styled('div')(({ theme }) => ({
   display: 'flex',
-  alignItem: 'center',
   gap: 12,
-});
+
+  [theme.breakpoints.up('sm')]: {
+    alignItems: 'center',
+  },
+}));
 
 const Label = styled('label')({
   fontFamily: 'inherit',
@@ -175,6 +247,13 @@ const Label = styled('label')({
   fontWeight: 500,
   lineHeight: '20px',
   color: 'rgba(52, 64, 84, 1)',
+});
+
+const HelperText = styled(Typography)({
+  fontSize: 14,
+  fontWeight: 400,
+  lineHeight: '20px',
+  color: 'rgba(248, 63, 35, 1)',
 });
 
 const Text = styled(Typography)({
