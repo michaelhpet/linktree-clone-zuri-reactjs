@@ -1,6 +1,6 @@
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Contact from './routes/Contact';
 import Root from './routes/Root';
@@ -16,9 +16,12 @@ const router = createBrowserRouter([
   { path: '/contact', element: <Contact /> },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <RouterProvider router={router} />
     </ThemeProvider>
   </React.StrictMode>

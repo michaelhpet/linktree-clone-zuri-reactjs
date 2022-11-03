@@ -8,12 +8,7 @@ export default function Footer() {
       <Grid container spacing={3}>
         <GridItem xs={12} md={4}>
           <ZuriWrapper>
-            <img
-              src={zuriImage}
-              alt='Zuri Internship'
-              layout='fill'
-              objectFit='cover'
-            />
+            <img src={zuriImage} alt='Zuri Internship' />
           </ZuriWrapper>
         </GridItem>
 
@@ -23,12 +18,7 @@ export default function Footer() {
 
         <GridItem xs={12} md={4}>
           <I4gWrapper>
-            <img
-              src={i4gImage}
-              alt='Ingressive for Good'
-              layout='fill'
-              objectFit='cover'
-            />
+            <img src={i4gImage} alt='Ingressive for Good' />
           </I4gWrapper>
         </GridItem>
       </Grid>

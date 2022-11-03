@@ -23,12 +23,7 @@ export default function NavBar() {
       <GridItem xs={8} sm={4}>
         <Stack spacing={3} alignItems='center' mt='20px'>
           <Avatar>
-            <img
-              alt='Profile photo'
-              id='profile__img'
-              src={profileImage}
-              objectFit='cover'
-            />
+            <img alt='Profile photo' id='profile__img' src={profileImage} />
             <AvatarOverlay />
             <CameraIcon />
           </Avatar>
