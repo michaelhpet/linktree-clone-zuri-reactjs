@@ -16,6 +16,17 @@
 - An Anchor tag styled as a Button with an id **‘pitch’** that redirects to to [https://background.zuri.team](https://background.zuri.team), with a subtext where you pitch a service for doing background checks on coders. Use a good, selling sentence.
 - An Anchor tag styled as a Button with an id **‘book\_\_design’** that redirects to to [https://books.zuri.team/design-rules](https://books.zuri.team/design-rules) with a subtext where you pitch the free design book offered by Zuri.
 
+- Add another anchor tag styled as a Button with an id of 'contact' that redirects to “/contact” page in your app.
+  > NB. The contact page path must be "/contact"
+
+The contact page should have a form with the following details:
+
+- A First and last name input fields with ids ‘first_name’ and ‘last_name’ respectively
+- An Email address input field with an id of ‘email’
+- A Textarea with an id of ‘message’ to contain the message of the person
+- A button with an id of ‘btn\_\_submit’ that will submit the form
+- All fields should have appropriate label tags
+
 **Frontend Design**
 
 [Designs for frontend](https://www.figma.com/file/m2C1MHd8vASrLqfxSUdgxD/Designs-for-frontend?node-id=4623%3A431129)

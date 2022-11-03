@@ -9,7 +9,7 @@ const iconLinks = [
   },
   {
     id: 'github',
-    href: 'https://github.com/michael-peter/linktree-clone-zuri',
+    href: 'https://github.com/michael-peter/linktree-clone-zuri-reactjs',
     icon: GitHubIcon,
   },
 ];
