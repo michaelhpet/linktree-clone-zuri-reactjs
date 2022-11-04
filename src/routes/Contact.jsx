@@ -31,15 +31,19 @@ export default function Contact() {
 
     setFocus('');
 
+    const _error = initError;
+
     for (const key in data) {
       if (!data[key]) {
         setError((error) => ({ ...error, [key]: true }));
+        _error[key] = true;
       } else {
         setError((error) => ({ ...error, [key]: false }));
+        _error[key] = false;
       }
     }
 
-    if (Object.values(error).some((_) => _ === true)) return;
+    if (Object.values(_error).some((_) => _ === true)) return;
 
     if (!validateEmail(data.email)) {
       return;
@@ -165,6 +169,7 @@ export default function Contact() {
             <Grid item xs={12}>
               <CheckStack>
                 <CheckBox
+                  id='agree'
                   checked={data.agree}
                   onChange={(e) =>
                     setData((data) => ({ ...data, agree: !data.agree }))
