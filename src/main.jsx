@@ -13,7 +13,7 @@ const theme = createTheme({
 
 const router = createBrowserRouter([
   { path: '/', element: <Root /> },
-  { path: '/contact', element: <Contact /> },
+  { path: 'contact', element: <Contact /> },
 ]);
 
 const container = document.getElementById('app');

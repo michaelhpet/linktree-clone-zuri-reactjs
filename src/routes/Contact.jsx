@@ -9,6 +9,8 @@ import TextArea from '../components/TextArea';
 import TextField from '../components/TextField';
 import validateEmail from '../utils/helpers/validateEmail';
 
+const name = 'Michael Peter';
+
 export default function Contact() {
   const location = useLocation();
   const pathname = location.pathname;
@@ -43,11 +45,11 @@ export default function Contact() {
       return;
     }
 
-    const name = `${data.firstName} ${data.lastName}`;
+    const clientName = `${data.firstName} ${data.lastName}`;
     const myEmail = 'michaelpeter.ai@gmail.com';
 
     open(
-      `mailto:${myEmail}?subject=${encodeURI(name)}&body=${encodeURI(
+      `mailto:${myEmail}?subject=${encodeURI(clientName)}&body=${encodeURI(
         data.message
       )}`,
       '_blank'
@@ -170,8 +172,8 @@ export default function Contact() {
                 />
 
                 <Text>
-                  You agree to providing your data to Michael Peter who may
-                  contact you.
+                  You agree to providing your data to {name} who may contact
+                  you.
                 </Text>
               </CheckStack>
             </Grid>

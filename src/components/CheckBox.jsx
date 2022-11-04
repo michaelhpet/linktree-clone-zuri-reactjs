@@ -78,4 +78,8 @@ const Check = styled('span')({
     height: 6.97,
     color: 'transparent',
   },
+
+  '&:hover': {
+    cursor: 'pointer',
+  },
 });

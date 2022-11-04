@@ -18,9 +18,7 @@ const Input = styled('input', {
   border: `1px solid rgba(${
     props?.error ? '248, 150, 135, 1' : '208, 213, 221, 1'
   })`,
-  boxShadow: `0 1px 2px rgba(${
-    props?.error ? '248, 150, 135, 1' : '16, 24, 40, 0.05'
-  })`,
+  boxShadow: '0 1px 2px rgba(16, 24, 40, 0.05)',
 
   '&:focus': {
     outline: `1px solid rgba(${
