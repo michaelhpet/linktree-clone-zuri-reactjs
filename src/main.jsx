@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   { path: 'contact', element: <Contact /> },
 ]);
 
-const container = document.getElementById('app');
+const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
