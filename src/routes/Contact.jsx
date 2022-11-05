@@ -58,6 +58,10 @@ export default function Contact() {
       )}`,
       '_blank'
     );
+
+    alert('Thanks. The form has been sent successfully.');
+    setData(initData);
+    setError(initError);
   };
 
   return (
