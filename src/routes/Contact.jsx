@@ -213,7 +213,6 @@ const initError = {
   firstName: false,
   lastName: false,
   email: false,
-  emailInvalid: false,
   message: false,
 };
 
