@@ -17,7 +17,7 @@
 - An Anchor tag styled as a Button with an id `book__design` that redirects to to [https://books.zuri.team/design-rules](https://books.zuri.team/design-rules) with a subtext where you pitch the free design book offered by Zuri.
 
 - Add another anchor tag styled as a Button with an id of 'contact' that redirects to "/contact" page in your app.
-  > NB. The contact page path must be "/contact"
+ > NB. The contact page path must be "/contact"
 
 The contact page should have a form with the following details:
 
